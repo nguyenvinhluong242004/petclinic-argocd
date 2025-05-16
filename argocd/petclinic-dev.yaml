@@ -2,18 +2,21 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: vets-service-dev
+  name: petclinic-dev
   namespace: argocd
 spec:
   project: default
   source:
-    repoURL: https://github.com/nguyenvinhluong242004/petclinic-argocd
+    repoURL: https://github.com/yourname/petclinic-deploy
     targetRevision: main
-    path: vets-service/overlays/dev
+    path: charts/petclinic
+    helm:
+      valueFiles:
+        - values-dev.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: dev
   syncPolicy:
     automated:
-      prune: true
       selfHeal: true
+      prune: true
