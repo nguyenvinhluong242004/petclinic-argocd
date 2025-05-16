@@ -1,0 +1,11 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vets-service
+spec:
+  template:
+    spec:
+      containers:
+        - name: vets-service
+          image: anwirisme/spring-petclinic-vets-service:dev-<COMMIT_ID>
