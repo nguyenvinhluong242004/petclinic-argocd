@@ -7,7 +7,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/yourname/petclinic-deploy
+    repoURL: https://github.com/nguyenvinhluong242004/petclinic-argocd
     targetRevision: main
     path: charts/petclinic
     helm:
