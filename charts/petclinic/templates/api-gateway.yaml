@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-gateway
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: api-gateway
+  template:
+    metadata:
+      labels:
+        app: api-gateway
+    spec:
+      containers:
+        - name: api-gateway
+          image: "{{ .Values.image.apiGateway.repository }}:{{ .Values.image.apiGateway.tag }}"
+          ports:
+            - containerPort: {{ .Values.service.apiGateway.port }}
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: docker
+            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+              value: http://discovery-server:{{ .Values.service.discoveryServer.port }}/eureka/
+            - name: SPRING_CONFIG_SERVER
+              value: http://config-server:{{ .Values.service.configServer.port }}
+  
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: api-gateway
+spec:
+  selector:
+    app: api-gateway
+  ports:
+    - port: {{ .Values.service.apiGateway.port }}
+      targetPort: {{ .Values.service.apiGateway.port }}

@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: genai-service
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: genai-service
+  template:
+    metadata:
+      labels:
+        app: genai-service
+    spec:
+      containers:
+        - name: genai-service
+          image: "{{ .Values.image.genaiService.repository }}:{{ .Values.image.genaiService.tag }}"
+          ports:
+            - containerPort: {{ .Values.service.genaiService.port }}
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: docker
+            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+              value: http://discovery-server:{{ .Values.service.discoveryServer.port }}/eureka/
+            - name: SPRING_CONFIG_SERVER
+              value: http://config-server:{{ .Values.service.configServer.port }}
+  
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: genai-service
+spec:
+  selector:
+    app: genai-service
+  ports:
+    - port: {{ .Values.service.genaiService.port }}
+      targetPort: {{ .Values.service.genaiService.port }}

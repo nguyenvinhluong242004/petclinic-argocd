@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: admin-server
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: admin-server
+  template:
+    metadata:
+      labels:
+        app: admin-server
+    spec:
+      containers:
+        - name: admin-server
+          image: "{{ .Values.image.adminServer.repository }}:{{ .Values.image.adminServer.tag }}"
+          ports:
+            - containerPort: {{ .Values.service.adminServer.port }}
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: docker
+            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+              value: http://discovery-server:{{ .Values.service.discoveryServer.port }}/eureka/
+            - name: SPRING_CONFIG_SERVER
+              value: http://config-server:{{ .Values.service.configServer.port }}
+  
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: admin-server
+spec:
+  selector:
+    app: admin-server
+  ports:
+    - port: {{ .Values.service.adminServer.port }}
+      targetPort: {{ .Values.service.adminServer.port }}

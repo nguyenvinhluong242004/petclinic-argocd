@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: visits-service
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: visits-service
+  template:
+    metadata:
+      labels:
+        app: visits-service
+    spec:
+      containers:
+        - name: visits-service
+          image: "{{ .Values.image.visitsService.repository }}:{{ .Values.image.visitsService.tag }}"
+          ports:
+            - containerPort: {{ .Values.service.visitsService.port }}
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: docker
+            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+              value: http://discovery-server:{{ .Values.service.discoveryServer.port }}/eureka/
+            - name: SPRING_CONFIG_SERVER
+              value: http://config-server:{{ .Values.service.configServer.port }}
+  
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: visits-service
+spec:
+  selector:
+    app: visits-service
+  ports:
+    - port: {{ .Values.service.visitsService.port }}
+      targetPort: {{ .Values.service.visitsService.port }}
