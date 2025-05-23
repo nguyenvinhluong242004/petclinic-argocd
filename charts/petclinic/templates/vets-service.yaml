@@ -1,4 +1,3 @@
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -18,6 +17,32 @@ spec:
           image: "{{ .Values.image.vetsService.repository }}:{{ .Values.image.vetsService.tag }}"
           ports:
             - containerPort: {{ .Values.service.vetsService.port }}
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: docker
+            - name: SPRING_CONFIG_IMPORT
+              value: optional:configserver:http://config-server:{{ .Values.service.configServer.port }}
+            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+              value: http://discovery-server:{{ .Values.service.discoveryServer.port }}/eureka/
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: {{ .Values.service.vetsService.port }}
+            initialDelaySeconds: 15
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: {{ .Values.service.vetsService.port }}
+            initialDelaySeconds: 30
+            periodSeconds: 15
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
 ---
 apiVersion: v1
 kind: Service

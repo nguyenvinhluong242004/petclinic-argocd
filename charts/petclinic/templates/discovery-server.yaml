@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: discovery-server
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: discovery-server
+  template:
+    metadata:
+      labels:
+        app: discovery-server
+    spec:
+      containers:
+        - name: discovery-server
+          image: "{{ .Values.image.discoveryServer.repository }}:{{ .Values.image.discoveryServer.tag }}"
+          ports:
+            - containerPort: {{ .Values.service.discoveryServer.port }}
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: docker
+            - name: SPRING_APPLICATION_NAME
+              value: discovery-server
+            - name: SPRING_APPLICATION_INSTANCE_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: discovery-server
+spec:
+  selector:
+    app: discovery-server
+  ports:
+    - port: {{ .Values.service.discoveryServer.port }}
+      targetPort: {{ .Values.service.discoveryServer.port }}
+      nodePort: {{ .Values.service.discoveryServer.nodePort }}
+  type: NodePort
