@@ -12,6 +12,13 @@ spec:
       labels:
         app: vets-service
     spec:
+      initContainers:
+        - name: wait-for-discovery-server
+          image: busybox
+          command:
+            - "sh"
+            - "-c"
+            - "until nc -z -v -w30 discovery-server {{ .Values.service.discoveryServer.port }}; do echo waiting for discovery-server; sleep 2; done;"
       containers:
         - name: vets-service
           image: "{{ .Values.image.vetsService.repository }}:{{ .Values.image.vetsService.tag }}"
@@ -20,29 +27,22 @@ spec:
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: docker
-            - name: SPRING_CONFIG_IMPORT
-              value: optional:configserver:http://config-server:{{ .Values.service.configServer.port }}
             - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
               value: http://discovery-server:{{ .Values.service.discoveryServer.port }}/eureka/
-          readinessProbe:
-            httpGet:
-              path: /actuator/health
-              port: {{ .Values.service.vetsService.port }}
-            initialDelaySeconds: 15
-            periodSeconds: 10
-          livenessProbe:
-            httpGet:
-              path: /actuator/health
-              port: {{ .Values.service.vetsService.port }}
-            initialDelaySeconds: 30
-            periodSeconds: 15
-          resources:
-            requests:
-              memory: "256Mi"
-              cpu: "250m"
-            limits:
-              memory: "512Mi"
-              cpu: "500m"
+            - name: SPRING_ZIPKIN_TRACING_ENDPOINT
+              value: http://tracing-server:9411/api/v2/spans
+            - name: SPRING_APPLICATION_NAME
+              value: vets-service
+            - name: SPRING_APPLICATION_INSTANCE_ID
+              value: ${spring.application.name}:${random.uuid}
+            - name: SPRING_CACHE_TTL
+              value: "60"
+            - name: SPRING_CACHE_HEAP_SIZE
+              value: "100"
+            - name: CONFIG_SERVER_URL
+              value: http://config-server:{{ .Values.service.configServer.port }}
+            - name: EUREKA_INSTANCE_HOSTNAME
+              value: vets-service
 ---
 apiVersion: v1
 kind: Service
