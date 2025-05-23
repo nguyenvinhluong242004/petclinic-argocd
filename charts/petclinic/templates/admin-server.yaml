@@ -23,9 +23,7 @@ spec:
             - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
               value: http://discovery-server:{{ .Values.service.discoveryServer.port }}/eureka/
             - name: SPRING_APPLICATION_INSTANCE_ID
-              valueFrom:
-                fieldRef:
-                  fieldPath: metadata.name
+              value: admin:${HOSTNAME}
             - name: SPRING_CONFIG_SERVER
               value: http://config-server:{{ .Values.service.configServer.port }}
   
