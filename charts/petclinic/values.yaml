@@ -28,6 +28,7 @@ image:
 service:
   apiGateway:
     port: 8080
+    nodePort: 30002
   discoveryServer:
     port: 8761
   customersService:
@@ -40,5 +41,7 @@ service:
     port: 8084
   adminServer:
     port: 9090
+    nodePort: 31002
   configServer:
     port: 8888
+    nodePort: 32002
