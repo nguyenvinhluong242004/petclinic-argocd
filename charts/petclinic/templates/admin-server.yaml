@@ -12,6 +12,20 @@ spec:
       labels:
         app: admin-server
     spec:
+      initContainers:
+        - name: wait-for-discovery
+          image: busybox:1.36
+          command:
+            - sh
+            - -c
+            - >
+              echo "Waiting for discovery-server to be ready...";
+              until nc -z discovery-server {{ .Values.service.discoveryServer.port }};
+              do
+                echo "Waiting for discovery-server...";
+                sleep 2;
+              done;
+              echo "Discovery-server is up!";
       containers:
         - name: admin-server
           image: "{{ .Values.image.adminServer.repository }}:{{ .Values.image.adminServer.tag }}"
@@ -28,7 +42,7 @@ spec:
                   fieldPath: metadata.name
             - name: SPRING_CONFIG_SERVER
               value: http://config-server:{{ .Values.service.configServer.port }}
-  
+
 ---
 apiVersion: v1
 kind: Service
