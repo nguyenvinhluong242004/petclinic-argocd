@@ -20,10 +20,20 @@ spec:
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: docker
+            # - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+            #   value: http://discovery-server:{{ .Values.service.discoveryServer.port }}/eureka/
+            # - name: SPRING_CONFIG_SERVER
+            #   value: http://config-server:{{ .Values.service.configServer.port }}
             - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
               value: http://discovery-server:{{ .Values.service.discoveryServer.port }}/eureka/
-            - name: SPRING_CONFIG_SERVER
+            - name: SPRING_APPLICATION_NAME
+              value: api-gateway
+            - name: SPRING_APPLICATION_INSTANCE_ID
+              value: api-gateway:${HOSTNAME}
+            - name: CONFIG_SERVER_URL
               value: http://config-server:{{ .Values.service.configServer.port }}
+            - name: EUREKA_INSTANCE_HOSTNAME
+              value: api-gateway
   
 ---
 apiVersion: v1
