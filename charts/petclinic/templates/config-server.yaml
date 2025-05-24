@@ -12,20 +12,6 @@ spec:
       labels:
         app: config-server
     spec:
-      initContainers:
-        - name: wait-for-discovery
-          image: busybox:1.36
-          command:
-            - sh
-            - -c
-            - >
-              echo "Waiting for discovery-server to be ready...";
-              until nc -z discovery-server {{ .Values.service.discoveryServer.port }};
-              do
-                echo "Waiting for discovery-server...";
-                sleep 2;
-              done;
-              echo "Discovery-server is up!";
       containers:
         - name: config-server
           image: "{{ .Values.image.configServer.repository }}:{{ .Values.image.configServer.tag }}"
