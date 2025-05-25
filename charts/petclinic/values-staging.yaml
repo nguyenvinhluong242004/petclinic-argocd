@@ -8,7 +8,7 @@ image:
     tag: latest
   customersService:
     repository: devopshcmus/spring-petclinic-customers-service
-    tag: 29243b2
+    tag: v7.0.0
   vetsService:
     repository: devopshcmus/spring-petclinic-vets-service
     tag: 51fa186
@@ -24,7 +24,6 @@ image:
   configServer:
     repository: devopshcmus/spring-petclinic-config-server
     tag: latest
-
 service:
   apiGateway:
     port: 8080
