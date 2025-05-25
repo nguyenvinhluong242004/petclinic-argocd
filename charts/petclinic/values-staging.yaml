@@ -1,29 +1,29 @@
 replicaCount: 2
 image:
   apiGateway:
-    repository: anwirisme/spring-petclinic-api-gateway
-    tag: v2.1.0
+    repository: devopshcmus/spring-petclinic-api-gateway
+    tag: latest
   discoveryServer:
-    repository: anwirisme/spring-petclinic-discovery-server
-    tag: v2.1.0
+    repository: devopshcmus/spring-petclinic-discovery-server
+    tag: latest
   customersService:
-    repository: anwirisme/spring-petclinic-customers-service
-    tag: v2.1.0
+    repository: devopshcmus/spring-petclinic-customers-service
+    tag: 29243b2
   vetsService:
-    repository: anwirisme/spring-petclinic-vets-service
-    tag: v2.1.0
+    repository: devopshcmus/spring-petclinic-vets-service
+    tag: 51fa186
   visitsService:
-    repository: anwirisme/spring-petclinic-visits-service
-    tag: v2.1.0
+    repository: devopshcmus/spring-petclinic-visits-service
+    tag: latest
   genaiService:
-    repository: anwirisme/spring-petclinic-genai-service
+    repository: devopshcmus/spring-petclinic-genai-service
     tag: v2.1.0
   adminServer:
-    repository: anwirisme/spring-petclinic-admin-server
-    tag: v2.1.0
+    repository: devopshcmus/spring-petclinic-admin-server
+    tag: latest
   configServer:
-    repository: anwirisme/spring-petclinic-config-server
-    tag: v2.1.0
+    repository: devopshcmus/spring-petclinic-config-server
+    tag: latest
 
 service:
   apiGateway:
