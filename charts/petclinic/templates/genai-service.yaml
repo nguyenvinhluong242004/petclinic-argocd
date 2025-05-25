@@ -23,16 +23,6 @@ spec:
               until nc -z discovery-server {{ .Values.service.discoveryServer.port }};
               do echo "Waiting..."; sleep 2; done;
               echo "discovery-server is up!"
-        - name: wait-for-config
-          image: busybox:1.36
-          command:
-            - sh
-            - -c
-            - >
-              echo "Waiting for config-server...";
-              until nc -z config-server {{ .Values.service.configServer.port }};
-              do echo "Waiting..."; sleep 2; done;
-              echo "config-server is up!"
       containers:
         - name: genai-service
           image: "{{ .Values.image.genaiService.repository }}:{{ .Values.image.genaiService.tag }}"

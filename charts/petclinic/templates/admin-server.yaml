@@ -42,6 +42,8 @@ spec:
                   fieldPath: metadata.name
             - name: SPRING_CONFIG_SERVER
               value: http://config-server:{{ .Values.service.configServer.port }}
+            - name: EUREKA_INSTANCE_HOSTNAME
+              value: admin-server
 
 ---
 apiVersion: v1
