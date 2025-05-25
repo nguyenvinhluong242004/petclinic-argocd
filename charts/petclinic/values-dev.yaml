@@ -8,13 +8,13 @@ image:
     tag: latest
   customersService:
     repository: devopshcmus/spring-petclinic-customers-service
-    tag: 0424f44
+    tag: 8b83e05
   vetsService:
     repository: devopshcmus/spring-petclinic-vets-service
     tag: latest
   visitsService:
     repository: devopshcmus/spring-petclinic-visits-service
-    tag: 0424f44
+    tag: 8b83e05
   genaiService:
     repository: devopshcmus/spring-petclinic-genai-service
     tag: fb50a93
