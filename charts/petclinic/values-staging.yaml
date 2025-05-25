@@ -17,7 +17,7 @@ image:
     tag: latest
   genaiService:
     repository: devopshcmus/spring-petclinic-genai-service
-    tag: v2.1.0
+    tag: latest
   adminServer:
     repository: devopshcmus/spring-petclinic-admin-server
     tag: latest
