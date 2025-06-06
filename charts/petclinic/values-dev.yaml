@@ -11,7 +11,7 @@ image:
     tag: 8b83e05
   vetsService:
     repository: devopshcmus/spring-petclinic-vets-service
-    tag: latest
+    tag: 6f6cf90
   visitsService:
     repository: devopshcmus/spring-petclinic-visits-service
     tag: 8b83e05
