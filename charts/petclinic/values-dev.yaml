@@ -2,7 +2,7 @@ replicaCount: 1
 image:
   apiGateway:
     repository: devopshcmus/spring-petclinic-api-gateway
-    tag: e0bf050
+    tag: 609f6bc
   discoveryServer:
     repository: devopshcmus/spring-petclinic-discovery-server
     tag: latest
@@ -11,7 +11,7 @@ image:
     tag: 8b83e05
   vetsService:
     repository: devopshcmus/spring-petclinic-vets-service
-    tag: 6f6cf90
+    tag: 609f6bc
   visitsService:
     repository: devopshcmus/spring-petclinic-visits-service
     tag: 8b83e05
