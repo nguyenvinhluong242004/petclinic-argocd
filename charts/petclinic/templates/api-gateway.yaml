@@ -44,7 +44,7 @@ spec:
               value: http://config-server:{{ .Values.service.configServer.port }}
             - name: EUREKA_INSTANCE_HOSTNAME
               value: api-gateway
-            - name: SPRING_ZIPKIN_TRACING_ENDPOINT
+            - name: MANAGEMENT_ZIPKIN_TRACING_ENDPOINT
               value: {{ .Values.env.zipkinBaseUrl }}
               
 ---

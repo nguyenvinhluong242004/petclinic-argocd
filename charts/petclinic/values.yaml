@@ -26,7 +26,7 @@ image:
     tag: latest
 
 env:
-  zipkinBaseUrl: http://zipkin.observability.svc.cluster.local:9411
+  zipkinBaseUrl: http://tracing-server-zipkin.observability:9411/api/v2/spans
     
 service:
   apiGateway:
