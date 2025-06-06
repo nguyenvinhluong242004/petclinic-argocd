@@ -34,7 +34,7 @@ spec:
             - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
               value: http://discovery-server:{{ .Values.service.discoveryServer.port }}/eureka/
             - name: SPRING_ZIPKIN_TRACING_ENDPOINT
-              value: http://tracing-server:9411/api/v2/spans
+              value: {{ .Values.env.zipkinBaseUrl }}
             - name: SPRING_APPLICATION_NAME
               value: vets-service
             - name: SPRING_APPLICATION_INSTANCE_ID

@@ -24,6 +24,9 @@ image:
   configServer:
     repository: devopshcmus/spring-petclinic-config-server
     tag: latest
+
+env:
+  zipkinBaseUrl: http://zipkin.observability.svc.cluster.local:9411
     
 service:
   apiGateway:
