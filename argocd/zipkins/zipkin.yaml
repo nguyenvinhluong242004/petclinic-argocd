@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://openzipkin.github.io/zipkin
     chart: zipkin
-    targetRevision: 2.23.2  # hoặc latest stable version
+    targetRevision: 0.7.0  # hoặc latest stable version
     helm:
       releaseName: zipkin
   destination:
