@@ -14,7 +14,7 @@ image:
     tag: cedef4f
   visitsService:
     repository: devopshcmus/spring-petclinic-visits-service
-    tag: cedef4f
+    tag: "9335095"
   genaiService:
     repository: devopshcmus/spring-petclinic-genai-service
     tag: cedef4f
