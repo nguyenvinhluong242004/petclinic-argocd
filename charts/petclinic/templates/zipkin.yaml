@@ -14,9 +14,12 @@ spec:
     spec:
       containers:
         - name: tracing-server
-          image: openzipkin/zipkin:3.5
+          image: openzipkin/zipkin:2.24
           ports:
             - containerPort: 9411
+          env:
+            - name: STORAGE_TYPE
+              value: mem
 
 ---
 apiVersion: v1
