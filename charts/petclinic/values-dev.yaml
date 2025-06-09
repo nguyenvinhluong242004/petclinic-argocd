@@ -11,7 +11,7 @@ image:
     tag: cedef4f
   vetsService:
     repository: devopshcmus/spring-petclinic-vets-service
-    tag: cedef4f
+    tag: 60ba44e
   visitsService:
     repository: devopshcmus/spring-petclinic-visits-service
     tag: "9335095"
