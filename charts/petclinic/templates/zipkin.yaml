@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: tracing-server
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
       app: tracing-server
@@ -16,11 +16,10 @@ spec:
         - name: tracing-server
           image: openzipkin/zipkin:2.24
           ports:
-            - containerPort: 9411
+            - containerPort: {{ .Values.service.zipkin.port }}
           env:
             - name: STORAGE_TYPE
               value: mem
-
 ---
 apiVersion: v1
 kind: Service
@@ -31,6 +30,6 @@ spec:
   selector:
     app: tracing-server
   ports:
-    - port: 9411           
-      targetPort: 9411      
-      nodePort: 30941       
+    - port: {{ .Values.service.zipkin.port }}
+      targetPort: {{ .Values.service.zipkin.port }}
+      nodePort: {{ .Values.service.zipkin.nodePort }}

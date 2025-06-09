@@ -45,3 +45,6 @@ service:
   configServer:
     port: 8888
     nodePort: 32001
+  zipkin:
+    port: 9411
+    nodePort: 30084
