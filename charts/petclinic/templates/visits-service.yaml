@@ -33,8 +33,8 @@ spec:
               value: docker
             - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
               value: http://discovery-server:{{ .Values.service.discoveryServer.port }}/eureka/
-            - name: MANAGEMENT_ZIPKIN_TRACING_ENDPOINT
-              value: {{ .Values.env.zipkinBaseUrl }}
+            - name: SPRING_ZIPKIN_TRACING_ENDPOINT
+              value: http://tracing-server:9411/api/v2/spans
             - name: SPRING_APPLICATION_NAME
               value: visits-service
             - name: SPRING_APPLICATION_INSTANCE_ID
