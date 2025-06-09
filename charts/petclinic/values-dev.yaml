@@ -5,7 +5,7 @@ image:
     tag: cedef4f
   discoveryServer:
     repository: devopshcmus/spring-petclinic-discovery-server
-    tag: cedef4f
+    tag: latest
   customersService:
     repository: devopshcmus/spring-petclinic-customers-service
     tag: cedef4f
