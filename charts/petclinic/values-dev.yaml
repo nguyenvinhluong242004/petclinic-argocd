@@ -14,7 +14,7 @@ image:
     tag: 60ba44e
   visitsService:
     repository: devopshcmus/spring-petclinic-visits-service
-    tag: "9335095"
+    tag: "90483ba"
   genaiService:
     repository: devopshcmus/spring-petclinic-genai-service
     tag: cedef4f
