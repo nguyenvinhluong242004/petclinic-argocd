@@ -12,9 +12,9 @@ spec:
       labels:
         app: visits-service
       annotations:
-        prometheus.io/scrape: "{{SCRAPE}}"
+        prometheus.io/scrape: "true"
         prometheus.io/path: "/actuator/prometheus"
-        prometheus.io/port: "{{PORT}}"
+        prometheus.io/port: "{{ .Values.service.customersService.port }}"
     spec:
       initContainers:
         - name: wait-for-discovery
