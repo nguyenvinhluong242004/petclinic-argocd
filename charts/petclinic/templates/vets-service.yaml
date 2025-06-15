@@ -11,6 +11,10 @@ spec:
     metadata:
       labels:
         app: vets-service
+      annotations:
+        prometheus.io/scrape: "{{SCRAPE}}"
+        prometheus.io/path: "/actuator/prometheus"
+        prometheus.io/port: "{{PORT}}"
     spec:
       initContainers:
         - name: wait-for-discovery
