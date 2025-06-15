@@ -14,7 +14,7 @@ spec:
       annotations:
         prometheus.io/scrape: "true"
         prometheus.io/path: "/actuator/prometheus"
-        prometheus.io/port: "{{ .Values.service.customersService.port }}"
+        prometheus.io/port: "{{ .Values.service.visitsService.port }}"
     spec:
       initContainers:
         - name: wait-for-discovery
