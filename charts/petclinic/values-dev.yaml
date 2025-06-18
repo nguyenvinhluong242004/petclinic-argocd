@@ -2,19 +2,19 @@ replicaCount: 1
 image:
   apiGateway:
     repository: devopshcmus/spring-petclinic-api-gateway
-    tag: ff5b5b8
+    tag: a07d489
   discoveryServer:
     repository: devopshcmus/spring-petclinic-discovery-server
     tag: latest
   customersService:
     repository: devopshcmus/spring-petclinic-customers-service
-    tag: ff5b5b8
+    tag: a07d489
   vetsService:
     repository: devopshcmus/spring-petclinic-vets-service
-    tag: ff5b5b8
+    tag: a07d489
   visitsService:
     repository: devopshcmus/spring-petclinic-visits-service
-    tag: "ff5b5b8"
+    tag: "a07d489"
   genaiService:
     repository: devopshcmus/spring-petclinic-genai-service
     tag: cedef4f
