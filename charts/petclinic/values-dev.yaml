@@ -23,7 +23,7 @@ image:
     tag: ea4d408
   configServer:
     repository: devopshcmus/spring-petclinic-config-server
-    tag: b38b577
+    tag: 131aab6
 service:
   apiGateway:
     port: 8080
