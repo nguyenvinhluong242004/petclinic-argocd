@@ -41,7 +41,7 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.name
-            - name: SPRING_CONFIG_SERVER
+            - name: CONFIG_SERVER_URL
               value: http://config-server:{{ .Values.service.configServer.port }}
 
 ---
