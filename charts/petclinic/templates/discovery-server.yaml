@@ -28,7 +28,7 @@ spec:
                   fieldPath: metadata.name
             - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
               value: http://discovery-server:{{ .Values.service.discoveryServer.port }}/eureka/
-            - name: CONFIG_SERVER_URL
+            - name: SPRING_CLOUD_CONFIG_URL
               value: http://config-server:8888
 ---
 apiVersion: v1
